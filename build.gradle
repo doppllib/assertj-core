@@ -1,0 +1,53 @@
+
+buildscript {
+    def doppl_gradle_version = doppl_gradle
+    repositories {
+        jcenter()
+        maven { url 'https://plugins.gradle.org/m2/' }
+        maven { url dopplMavenDeploy }
+        maven { url dopplRepo }
+    }
+    dependencies {
+        classpath 'net.ltgt.gradle:gradle-apt-plugin:0.9'
+        classpath "co.doppl:gradle:${doppl_gradle_version}"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url dopplMavenDeploy }
+        maven { url dopplRepo }
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'net.ltgt.apt'
+apply plugin: 'co.doppl.gradle'
+apply plugin: 'maven-publish'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+
+    testCompile 'org.mockito:mockito-core:1.9.5'
+}
+
+group = 'co.doppl.org.assertj'
+version = doppl_assertj_core_doppl
+
+ext.bintrayGitUrl = 'https://github.com/doppllib/assertj-core.git'
+
+apply from: "$dopplSharedScriptHome/doppllibpublish.gradle"
+apply from: "$dopplSharedScriptHome/bintray.gradle"
+
+test{
+    enabled = false
+}
+
+dopplConfig {
+    skipTests = true
+}

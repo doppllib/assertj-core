@@ -14,6 +14,9 @@
  */
 package org.assertj.core.api;
 
+import com.google.j2objc.annotations.Weak;
+
+
 import static org.assertj.core.util.Strings.formatIfArgs;
 
 import java.util.Comparator;
@@ -53,6 +56,8 @@ public abstract class AbstractAssert<S extends AbstractAssert<S, A>, A> implemen
   // visibility is protected to allow us write custom assertions that need access to actual
   @VisibleForTesting
   protected final A actual;
+
+  @Weak
   protected final S myself;
 
   // we prefer not to use Class<? extends S> selfType because it would force inherited
