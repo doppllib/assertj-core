@@ -31,9 +31,11 @@ sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
 dependencies {
-    testCompile 'junit:junit:4.11'
+    testCompile "junit:junit:$doppl_junit_java"
+    testDoppl "co.doppl.junit:junit:$doppl_junit_doppl"
 
-    testCompile 'org.mockito:mockito-core:1.9.5'
+    testCompile "org.mockito:mockito-core:$doppl_mockito_java"
+    testDoppl "co.doppl.org.mockito:mockito-core:$doppl_mockito_doppl"
 }
 
 group = 'co.doppl.org.assertj'
